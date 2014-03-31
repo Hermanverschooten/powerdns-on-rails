@@ -1,3 +1,4 @@
+require "dns/zonefile"
 class ImportBindController < ApplicationController
   def new
   end
