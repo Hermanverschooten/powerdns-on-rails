@@ -11,7 +11,7 @@ class CreateDomains < ActiveRecord::Migration
 
       t.timestamps
     end
-    
+
     add_index :domains, :name
   end
 
