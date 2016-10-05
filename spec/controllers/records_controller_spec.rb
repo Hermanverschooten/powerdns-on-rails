@@ -14,7 +14,7 @@ describe RecordsController, ", users, and non-SOA records" do
    { :name => '', :ttl => '86400', :type => 'MX', :content => 'mail.example.com', :prio => '10' },
    { :name => 'foo', :ttl => '86400', :type => 'CNAME', :content => 'bar.example.com' },
    { :name => '', :ttl => '86400', :type => 'AAAA', :content => '::1' },
-   { :name => '', :ttl => '86400', :type => 'TXT', :content => 'Hello world' },
+   { :name => '', :ttl => '86400', :type => 'TXT', :content => '"Hello world"' },
    { :name => '166.188.77.208.in-addr.arpa.', :type => 'PTR', :content => 'www.example.com' },
    # TODO: Test these
    { :type => 'SPF', :pending => true },
@@ -31,6 +31,13 @@ describe RecordsController, ", users, and non-SOA records" do
       assigns(:domain).should_not be_nil
       assigns(:record).should_not be_nil
     end
+  end
+
+  it "should increment the serial on create" do
+    @soa = @domain.soa_record
+    serial = @soa.serial
+    xhr :post, :create, :domain_id => @domain.id, :record => {:name =>'test', :ttl=>3600, :type=>'A', :content=>'127.0.0.1'}
+    @soa.tap(&:reload).serial.should eql(serial + 1)
   end
 
   it "shouldn't save when invalid" do
@@ -61,6 +68,14 @@ describe RecordsController, ", users, and non-SOA records" do
     response.should render_template("records/update")
   end
 
+  it "should increment the serial on update" do
+    record = FactoryGirl.create(:a, :domain => @domain)
+    @soa = @domain.soa_record
+    serial = @soa.serial
+    xhr :put, :update, :id => record.id, :domain_id => @domain.id, :record => {:content => '0.0.0.0'}
+    @soa.tap(&:reload).serial.should eql(serial + 1)
+  end
+
   it "shouldn't update when invalid" do
     record = FactoryGirl.create(:ns, :domain => @domain)
 
@@ -86,6 +101,15 @@ describe RecordsController, ", users, and non-SOA records" do
     response.should be_redirect
     response.should redirect_to( domain_path( @domain ) )
   end
+
+  it "should increment the serial on delete" do
+    record = FactoryGirl.create(:a, :domain => @domain)
+    @soa = @domain.soa_record
+    serial = @soa.serial
+    delete :destroy, :domain_id => @domain.id, :id => record.id
+    @soa.tap(&:reload).serial.should eql(serial + 1)
+  end
+
 end
 
 describe RecordsController, ", users, and SOA records" do

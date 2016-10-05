@@ -4,5 +4,7 @@ log/*.log
 *.swp
 tmp/*
 config/database.yml
+/.vagrant
+.env
 .env.*
-public/assets
+public/assets/**

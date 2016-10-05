@@ -141,6 +141,8 @@ ActiveRecord::Schema.define(:version => 20140927103056) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "type",       :default => "NATIVE"
+    t.string   "master"
   end
 
 end

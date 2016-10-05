@@ -8,16 +8,14 @@ group :assets do
   gem 'uglifier'
 end
 
-platforms :ruby do
-  gem 'mysql2', '~> 0.3.15'
-end
+gem 'mysql2', '~> 0.3.15'
 
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'will_paginate', '~> 3.0.4'
 gem "audited-activerecord", "~> 3.0.0.rc2"
 gem 'inherited_resources'
-gem 'devise'
+gem 'devise' #, '~> 2.2.8'
 gem "devise-encryptable"
 gem 'rabl'
 gem 'state_machine'

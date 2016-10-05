@@ -1,0 +1,3 @@
+<%for dom in @domains -%>
+  zone "<%=dom.name%>" {type slave; masters { 77.73.98.246; }; file "db.<%= dom.nam %>";};
+<%end-%>

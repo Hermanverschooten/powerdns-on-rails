@@ -33,8 +33,10 @@ $(document).ready(function() {
   $('#domain_zone_template_id').change(function() {
     if ( $(this).val() == '' ) {
       $('#no-template-input').show();
+      $('#domain-type').show();
     } else {
       $('#no-template-input').hide();
+      $('#domain-type').hide();
     }
   });
 
@@ -50,8 +52,8 @@ $(document).ready(function() {
 });
 
 // Ajax activity indicator bound to ajax start/stop document events
-$(document).ajaxStart(function(){ 
-  $('#ajaxBusy').show(); 
-}).ajaxStop(function(){ 
+$(document).ajaxStart(function(){
+  $('#ajaxBusy').show();
+}).ajaxStop(function(){
   $('#ajaxBusy').hide();
 });
