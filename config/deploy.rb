@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.1
-lock '3.4.0'
+lock '3.6.1'
 
 set :application, 'powerdns-on-rails'
 set :repo_url, 'git@github.com:Hermanverschooten/powerdns-on-rails.git'
