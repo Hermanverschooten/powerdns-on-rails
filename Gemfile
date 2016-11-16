@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.2.16'
+gem 'rails', '~> 3.2.22.5'
 
 group :assets do
   gem 'sass-rails'
@@ -8,7 +8,7 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'mysql2', '~> 0.3.15'
+gem 'mysql2', '~> 0.3.18'
 
 gem 'haml-rails'
 gem 'jquery-rails'
