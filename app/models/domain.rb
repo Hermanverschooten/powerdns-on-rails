@@ -29,6 +29,7 @@ class Domain < ActiveRecord::Base
   has_many :srv_records,   :class_name => 'SRV'
   has_many :sshfp_records, :class_name => 'SSHFP'
   has_many :ptr_records,   :class_name => 'PTR'
+  has_many :caa_records,   :class_name => 'CAA'
 
   validates_presence_of :name
   validates_uniqueness_of :name
@@ -79,7 +80,7 @@ class Domain < ActiveRecord::Base
   def to_xml(options={})
     super(options.merge(:include => :records))
   end
-  
+
   # Are we a slave domain
   def slave?
     self.type == 'SLAVE'

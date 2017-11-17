@@ -36,6 +36,7 @@ end
 group :test do
   gem "factory_girl_rails", "~> 4.0"
 
+  gem 'test-unit', '~> 3.0'
   gem "cucumber-rails", :require => false
   gem 'mocha', :require => false
   gem 'webrat'
